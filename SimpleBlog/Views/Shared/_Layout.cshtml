@@ -1,0 +1,23 @@
+﻿
+@{
+    Layout = null;
+}
+
+<!DOCTYPE html>
+
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <title>@ViewBag.title -Simple Blog</title>
+</head>
+<body>
+    <header>
+        <h1>Simple Blog</h1>
+    </header>
+    @RenderBody()
+    <footer>
+        &copy; <text>Tets</text>
+    </footer>
+    @RenderSection("Scripts", false)
+</body>
+</html>
