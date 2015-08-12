@@ -1,0 +1,41 @@
+﻿@using System.Web.Optimization;
+
+@{
+    Layout = null;
+}
+
+@helper IsSelected(string tabName)
+{
+    if (tabName==ViewBag.SelectedTab)
+    {
+        @:active
+    }
+}
+
+<!DOCTYPE html>
+
+<html>
+<head>
+    <title>Simple Blog Admin</title>
+     @Styles.Render("~/admin/styles")
+</head>
+<body>
+    <div class="container">
+        <ul class="nav nav-pills">
+            <li class="@IsSelected("posts")">
+                @Html.ActionLink("Posts","index","Posts",new {area="admin"},new { })
+            </li>
+            <li class="@IsSelected("users")">
+                @Html.ActionLink("Users", "index", "Users", new { area = "admin" }, new { })
+            </li>
+            <li class="pull-right active">
+                @Html.ActionLink("Back Home", "Home");
+            </li>
+        </ul>
+        <p>@ViewBag.SelectedTab</p>
+        @RenderBody()
+    </div>
+    @Scripts.Render("~/admin/scripts");
+    @RenderSection("Scripts", false)
+</body>
+</html>
