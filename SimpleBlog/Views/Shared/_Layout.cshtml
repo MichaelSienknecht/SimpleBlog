@@ -15,6 +15,7 @@
 <body>
     <header>
         <h1>Simple Blog</h1>
+        <i class="glyphicon glyphicon-bell"></i>
         @if(User.Identity.IsAuthenticated)
         {
             <p>Welcome back @User.Identity.Name</p>
@@ -35,6 +36,7 @@
     <footer>
         &copy; <text>Tets</text>
     </footer>
+    @Scripts.Render("~/scripts");
     @RenderSection("Scripts", false)
 </body>
 </html>
