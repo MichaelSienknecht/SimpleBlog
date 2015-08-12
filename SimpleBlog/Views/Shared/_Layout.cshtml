@@ -1,4 +1,5 @@
-﻿
+﻿@using System.Web.Optimization;
+
 @{
     Layout = null;
 }
@@ -9,6 +10,7 @@
 <head>
     <meta name="viewport" content="width=device-width" />
     <title>@ViewBag.title -Simple Blog</title>
+    @Styles.Render("~/styles")
 </head>
 <body>
     <header>
