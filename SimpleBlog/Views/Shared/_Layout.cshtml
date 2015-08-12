@@ -13,6 +13,21 @@
 <body>
     <header>
         <h1>Simple Blog</h1>
+        @if(User.Identity.IsAuthenticated)
+        {
+            <p>Welcome back @User.Identity.Name</p>
+            <a href="@Url.RouteUrl("logout")">logout</a>
+
+            if(User.IsInRole("admin"))
+            {
+                <a href="@Url.Action("index","Posts", new {area="admin"})">View post in admin</a>
+            }
+        }
+        else
+        {
+            <a href="@Url.RouteUrl("login")">Login</a>
+        }
+
     </header>
     @RenderBody()
     <footer>

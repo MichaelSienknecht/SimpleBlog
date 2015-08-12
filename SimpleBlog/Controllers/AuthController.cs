@@ -4,29 +4,40 @@ using System.Linq;
 using System.Web;
 using System.Web.Mvc;
 using SimpleBlog.ViewModels;
+using System.Web.Security;
 
 namespace SimpleBlog.Controllers
 {
     public class AuthController : Controller
     {
-       public ActionResult Login()
+        public object FormsAuthentivcation { get; private set; }
+
+        public ActionResult Login()
        {
             return View();
        }
 
        [HttpPost]
-       public ActionResult Login(AuthLogin form)
+       public ActionResult Login(AuthLogin form, string returnUrl)
        {
             if (!ModelState.IsValid)
             {
                 return View(form);
             }
-            if(form.username!="test")
+
+            FormsAuthentication.SetAuthCookie(form.username, true);
+            
+            if(!string.IsNullOrWhiteSpace(returnUrl))
             {
-                ModelState.AddModelError("username","Thats not valid");
-                return View(form);
+                return Redirect(returnUrl);
             }
-            return Content("Is Valid!!!");
+            return Redirect("home");
+       }
+
+       public ActionResult Logout()
+       {
+            FormsAuthentication.SignOut();
+            return RedirectToRoute("home");
        } 
     }
 }
